@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://wvpdo3yt22rs"]
+
+[ext_resource type="ArrayMesh" uid="uid://dq8axsou0v1bc" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_A_withoutBase.obj" id="1_dj77i"]
+[ext_resource type="PackedScene" uid="uid://ckfqdiohed1yd" path="res://player.tscn" id="1_tmof5"]
+[ext_resource type="ArrayMesh" uid="uid://c2k2f8t5rrdax" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_junction.obj" id="3_s5yqf"]
+[ext_resource type="ArrayMesh" uid="uid://cpr7djx6tjhjs" path="res://addons/kaykit_city_builder_bits/Assets/obj/box_A.obj" id="4_tyl0p"]
+[ext_resource type="ArrayMesh" uid="uid://q3ss7ni1qcpw" path="res://addons/kaykit_city_builder_bits/Assets/obj/firehydrant.obj" id="5_vl86c"]
+[ext_resource type="ArrayMesh" uid="uid://pfmgmgdwbkox" path="res://addons/kaykit_city_builder_bits/Assets/obj/bench.obj" id="6_ir7ou"]
+[ext_resource type="ArrayMesh" uid="uid://blts2j8fp6ntc" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_C_withoutBase.obj" id="7_whp65"]
+[ext_resource type="ArrayMesh" uid="uid://bhb1h8ecgtjx" path="res://addons/kaykit_city_builder_bits/Assets/obj/car_sedan.obj" id="8_3yx1l"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wnufp"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_tmof5"]
+sky_material = SubResource("ProceduralSkyMaterial_wnufp")
+
+[sub_resource type="Environment" id="Environment_dj77i"]
+background_mode = 2
+sky = SubResource("Sky_tmof5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tmof5"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s5yqf"]
+points = PackedVector3Array(-1.01587, -0.015873, -1.01587, 1.01587, 0.111099, 1.01587, -1.01587, 0.111099, 1.01587, 1.01587, -0.015873, 1.01587, 1.01587, 0.111099, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.111099, -1.01587, 1.01587, -0.015873, -1.01587)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dj77i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, -55.5314, -2.85352)
+mesh = ExtResource("1_dj77i")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.139, 0, 0, 0, 0.139, 0, 0, 0, 0.139, -0.136467, 1.6, -0.177558)
+shape = SubResource("ConcavePolygonShape3D_tmof5")
+
+[node name="Player" parent="." instance=ExtResource("1_tmof5")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, -2.3035, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(250, 0, 0, 0, 250, 0, 0, 0, 250, 22.8064, -70.67, 27.0431)
+mesh = ExtResource("3_s5yqf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0289297, 0)
+shape = SubResource("ConvexPolygonShape3D_s5yqf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(75, 0, 0, 0, 75, 0, 0, 0, 75, 19.648, -40.8398, -3.27543)
+mesh = ExtResource("4_tyl0p")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.166832, 0)
+shape = SubResource("ConvexPolygonShape3D_s5yqf")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(44.3092, 2.47125, -23.0345, -2.19266, 49.9389, 1.13987, 23.0626, 1.30385e-06, 44.3634, 70.698, -53.3188, 1.82478)
+mesh = ExtResource("5_vl86c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
+transform = Transform3D(0.5, 0, 1.49012e-08, 0, 0.488148, -0.10822, 0, 0.10822, 0.488148, -12.5278, -8.24663, -23.246)
+shape = SubResource("ConvexPolygonShape3D_s5yqf")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, -8.74228e-06, 0, 8.74228e-06, 50, -23.592, -52.221, 1.65292)
+mesh = ExtResource("6_ir7ou")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, -7.10543e-15, 0, 7.10543e-15, 0.2, 0.00668797, -0.216252, 3.72529e-08)
+shape = SubResource("ConvexPolygonShape3D_s5yqf")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(12.9176, -1.15681, 15.2249, 0.348397, 19.9597, 1.22097, -15.2648, -0.523383, 12.9117, -66.3326, -55.3323, 38.0854)
+mesh = ExtResource("7_whp65")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D6/StaticBody3D"]
+transform = Transform3D(1, 1.49012e-08, -8.9407e-08, -9.31323e-09, 1, -3.72529e-09, 8.9407e-08, -3.72529e-09, 1, -0.179918, 2.19612, 0.212491)
+shape = SubResource("ConvexPolygonShape3D_s5yqf")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-18.1644, 3.17596e-06, -17.1772, 4.37114e-06, 25, 0, 17.1772, -3.00335e-06, -18.1644, 65.8039, -52.786, 96.1067)
+mesh = ExtResource("8_3yx1l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D7/StaticBody3D"]
+transform = Transform3D(0.5, 0, -1.49012e-08, 3.55271e-15, 0.5, -3.55271e-15, 1.49012e-08, 0, 0.5, 0.152889, -0.0170251, -0.0430074)
+shape = SubResource("ConvexPolygonShape3D_s5yqf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
